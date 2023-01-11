@@ -20,3 +20,12 @@ fp_b = (height-12/5)/2;
 fp_d = 24/5;
 // '-> beveled diameter
 fp_off = (30/5)/2+fp_d/2;
+
+// male cut
+mc_D = 35/5;
+// '-> outer diameter
+mc_b = fp_b;
+// '-> bevel
+mc_d = mc_D + 2*(3/5);
+// '-> beveled diameter
+mc_off = (16/5)/2+mc_D/2;

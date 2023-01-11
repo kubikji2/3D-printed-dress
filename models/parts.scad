@@ -11,15 +11,17 @@ module __beveled_cylinder(D,d,h,b)
 {
     _h = h-2*b;
     cylinder(d1=d,d2=D,h=b);
-    translate([0, 0, b])
-        cylinder(d=D,h=_h);
+    translate([0, 0, b-qpp_eps])
+        cylinder(d=D,h=_h+2*qpp_eps);
     translate([0, 0, b+_h])
         cylinder(d1=D,d2=d,h=b);
 }
 
+// male connector cut
 module male_cut()
 {
-
+    translate([0, 0, -height/2-qpp_eps])
+        __beveled_cylinder(D=mc_D,d=mc_d,h=height+2*qpp_eps,b=mc_b);
 }
 
 module male_part()
@@ -31,7 +33,7 @@ module male_part()
 module female_part()
 {
     translate([0, 0, -height/2])
-    __beveled_cylinder(D=fp_D, d=fp_d, h=height, b=fp_b);
+        __beveled_cylinder(D=fp_D, d=fp_d, h=height, b=fp_b);
 }
 
 module female_cut()
@@ -104,7 +106,10 @@ module unit()
             body();
             qpp_replicate_at(y=[-fp_off,fp_off])
                 female_part();
-        }        
+        }
+
+        qpp_replicate_at(x=[-mc_off,mc_off])
+            male_cut();        
     }
 }
 
