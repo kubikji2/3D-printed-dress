@@ -2,6 +2,21 @@ include<qpp_all.scad>
 
 include<constants.scad>
 
+// beveled cylinder
+// '-> D is the main diameter
+// '-> d is the top and bottom diameter
+// '-> h is the total height
+// '-> b is the bevel height
+module __beveled_cylinder(D,d,h,b)
+{
+    _h = h-2*b;
+    cylinder(d1=d,d2=D,h=b);
+    translate([0, 0, b])
+        cylinder(d=D,h=_h);
+    translate([0, 0, b+_h])
+        cylinder(d1=D,d2=d,h=b);
+}
+
 module male_cut()
 {
 
@@ -12,9 +27,11 @@ module male_part()
 
 }
 
-module femal_part()
+// female connector related part
+module female_part()
 {
-
+    translate([0, 0, -height/2])
+    __beveled_cylinder(D=fp_D, d=fp_d, h=height, b=fp_b);
 }
 
 module female_cut()
@@ -77,14 +94,17 @@ module body()
 // '-> body, female part and cut, male part and cut
 module unit()
 {
+    ftfs = [    [0,-b_a/2,0],
+                [0,b_a/2,0],];
+
     difference()
     {
         union()
         {
             body();
-        }
-
-        
+            qpp_replicate_at(y=[-fp_off,fp_off])
+                female_part();
+        }        
     }
 }
 
