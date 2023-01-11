@@ -6,7 +6,7 @@
 // '-> male cut         'mc_'
 // and a main parameter height denoted 'height'
 
-
+height = 3;
 // body -> b_
 b_a = 50/5;
 // '-> body side
