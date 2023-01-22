@@ -24,9 +24,58 @@ module male_cut()
         __beveled_cylinder(D=mc_D,d=mc_d,h=height+2*_eps,b=mc_b);
 }
 
+// male part component, the long shaft
+module __male_part_interface()
+{
+    translate([0,0,-mp_W/2])
+    {
+        // upper interface
+        translate([0,0,mp_W])
+            cylinder(d1=mp_pD, d2=mp_pd, h=mp_h); 
+        // body
+        cylinder(d=height,h=mp_W);
+        // lower interface
+        translate([0,0,-mp_h])
+            cylinder(d1=mp_pd, d2=mp_pD, h=mp_h); 
+    }
+}
+
+// male part component, the interface
+module __male_part_body()
+{
+    _d = mp_W-mp_w;
+    _l = mp_l - height/2;
+    _o = 1;
+    translate([mp_w/2,0,0])
+        resize([_d,height,_l])
+            cylinder();
+    
+    translate([-mp_w/2,-height/2,0])
+        cube([mp_w,height,_l]);
+    
+    translate([-mp_w/2,0,0])
+        resize([_d,height,_l])
+            cylinder();
+}
+
 module male_part()
 {
+    translate([mp_l-height/2,0,0]) 
+    //qpp_coordinate_frame(height=height)
+    rotate([0,0,-90]) 
+    {
+        // connection
+        rotate([0,-90,0])
+        {        
+            __male_part_interface();
+        }
 
+        // link
+        rotate([90,0,0])
+        {
+            __male_part_body();
+        }
+    }
 }
 
 // female connector related part
@@ -74,7 +123,7 @@ module __body_corner()
 module body()
 {
     // checking the shape
-    %cube([b_a,b_a,height], center=true);
+    //%cube([b_a,b_a,height], center=true);
     
     _off = b_a/2-height/2;
     _side_ends = [-_off,+_off];
@@ -126,5 +175,17 @@ module unit()
             female_cut(); 
         
     }
+
+    //translate([0,-mp_W/2,-height/2]) 
+    //    cube([mp_l,mp_W,height]);
+    
+    // left connector
+    male_part();
+
+    // right connector
+    rotate([0,0,180])
+        male_part();    
+
+
 }
 

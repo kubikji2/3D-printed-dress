@@ -15,7 +15,22 @@ _eps = 0.001;
 b_a = 50/5;
 // '-> body side
 
+// interface offset
+io = (height - 12/5)/2;
+
 // male part -> mp_
+mp_W = 7.5/5;
+// '-> with of the piece
+mp_w = 3/5;
+// '-> width of not beveled part
+mp_pd = 4.3/5;
+// '-> peg smaller diameter
+mp_pD = height-2*io;
+// '-> peg bigger diameter
+mp_h = 1; //(17.5/5 - mp_w)/2;
+// peg height
+mp_l = 37.5/5;
+// '-> total length
 
 // female part -> fp_
 fp_D = 30/5;
