@@ -38,7 +38,14 @@ module female_part()
 
 module female_cut()
 {
-
+    _h = height + 2*qpp_eps;
+    
+    translate([0,fc_w/2+fc_off,-_h/2])
+    {
+        cylinder(d=fc_w,h=_h);
+        translate([-fc_w/2,0,0])
+            cube([fc_w,fc_w/2+fp_D,_h]);
+    }
 }
 
 // TransForm to Horizontal Centered Cylinder
@@ -110,6 +117,14 @@ module unit()
 
         qpp_replicate_at(x=[-mc_off,mc_off])
             male_cut();        
+
+        // upper female cut
+        female_cut();
+
+        // lower female cut
+        rotate([0,0,180])
+            female_cut(); 
+        
     }
 }
 

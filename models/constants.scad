@@ -12,6 +12,8 @@ height = 3;
 b_a = 50/5;
 // '-> body side
 
+// male part -> mp_
+
 // female part -> fp_
 fp_D = 30/5;
 // '-> outer diameter
@@ -21,7 +23,7 @@ fp_d = 24/5;
 // '-> beveled diameter
 fp_off = (30/5)/2+fp_d/2;
 
-// male cut
+// male cut -> mc_
 mc_D = 35/5;
 // '-> outer diameter
 mc_b = fp_b;
@@ -29,3 +31,11 @@ mc_b = fp_b;
 mc_d = mc_D + 2*(3/5);
 // '-> beveled diameter
 mc_off = (16/5)/2+mc_D/2;
+// '-> cut offset from the center
+
+
+// female cut -> fc_
+fc_off = (17.5/5)/2;
+// '-> cut offset from the center
+fc_w = 10/5;
+// '-> width
