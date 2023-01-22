@@ -22,6 +22,7 @@ i_d = height/2;
 i_h = 1;
 i_c = b_a/2;
 i_w = 2;
+i_g = 1;
 
 // male part -> mp_
 mp_W = i_w - 2*io; //7.5/5; // -> this should be fc_w - 2* io? 
@@ -34,7 +35,7 @@ mp_pD = height-2*io;
 // '-> peg bigger diameter
 mp_h = 1; //(17.5/5 - mp_w)/2;
 // peg height
-mp_l = i_c+height/2; //37.5/5;
+mp_l = i_c + i_g + height/2; //37.5/5;
 // '-> total length
 
 // female part -> fp_
@@ -44,7 +45,7 @@ fp_b = (height-12/5)/2;
 // '-> bevel
 fp_d = 24/5;
 // '-> beveled diameter
-fp_off = (30/5)/2+fp_d/2;
+fp_off = b_a/2; //(30/5)/2+fp_d/2;
 
 // male cut -> mc_
 mc_D = 35/5;
@@ -53,7 +54,7 @@ mc_b = fp_b;
 // '-> bevel
 mc_d = mc_D + 2*(3/5);
 // '-> beveled diameter
-mc_off = (16/5)/2+mc_D/2;
+mc_off = b_a/2;//(16/5)/2+mc_D/2;
 // '-> cut offset from the center
 
 // female cut -> fc_
@@ -61,5 +62,5 @@ fc_off = (17.5/5)/2;
 // '-> cut offset from the center
 fc_w = i_w; //10/5;
 // '-> width
-fc_pg = 20/5-height;
+fc_pg = i_g;//20/5-height;
 // '-> peg gauge
