@@ -8,6 +8,9 @@
 
 height = 3;
 
+_eps = 0.001;
+// '-> new epsilon
+
 // body -> b_
 b_a = 50/5;
 // '-> body side

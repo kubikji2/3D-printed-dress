@@ -10,18 +10,18 @@ include<constants.scad>
 module __beveled_cylinder(D,d,h,b)
 {
     _h = h-2*b;
-    cylinder(d1=d,d2=D,h=b);
-    translate([0, 0, b-qpp_eps])
-        cylinder(d=D,h=_h+2*qpp_eps);
-    translate([0, 0, b+_h])
-        cylinder(d1=D,d2=d,h=b);
+    cylinder(d1=d,d2=D,h=b+_eps);
+    translate([0, 0, b])
+        cylinder(d=D,h=_h);
+    translate([0, 0, b+_h-_eps])
+        cylinder(d1=D,d2=d,h=b+_eps);
 }
 
 // male connector cut
 module male_cut()
 {
-    translate([0, 0, -height/2-qpp_eps])
-        __beveled_cylinder(D=mc_D,d=mc_d,h=height+2*qpp_eps,b=mc_b);
+    translate([0, 0, -height/2-_eps])
+        __beveled_cylinder(D=mc_D,d=mc_d,h=height+2*_eps,b=mc_b);
 }
 
 module male_part()
@@ -38,7 +38,7 @@ module female_part()
 
 module female_cut()
 {
-    _h = height + 2*qpp_eps;
+    _h = height + 2*_eps;
     
     translate([0,fc_w/2+fc_off,-_h/2])
     {
