@@ -85,6 +85,24 @@ module female_part()
         __beveled_cylinder(D=fp_D, d=fp_d, h=height, b=fp_b);
 }
 
+module __female_interface()
+{
+    _D = i_D;
+    _d = i_d;
+    _h = i_h;
+    _H = fc_w+2*_h;
+    
+    translate([-_H/2,0,0]) 
+    rotate([0,90,0]) 
+    hull()
+    {
+        translate([0,-fc_pg/2,0])
+            __beveled_cylinder(D=_D, d=_d, h=_H, b=_h);
+        translate([0,fc_pg/2,0])
+            __beveled_cylinder(D=_D, d=_d, h=_H, b=_h);
+    }
+}
+
 module female_cut()
 {
     _h = height + 2*_eps;
@@ -95,6 +113,10 @@ module female_cut()
         translate([-fc_w/2,0,0])
             cube([fc_w,fc_w/2+fp_D,_h]);
     }
+
+    translate([0,i_c,0])
+        __female_interface();
+
 }
 
 // TransForm to Horizontal Centered Cylinder
