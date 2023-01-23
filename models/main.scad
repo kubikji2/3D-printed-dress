@@ -3,7 +3,7 @@ include<parts.scad>
 
 $fn=60;
 
-
+/*
 _x_cnt = 2;
 _y_cnt = 3;
 _s = b_a + i_g;
@@ -20,7 +20,12 @@ for(x=[0:_x_cnt-1])
             unit(); 
     }
 }
+*/
 
-//unit();
+translate([0,0,-1.5])
+    rotate([0,0,90])
+        %import("reference.stl");
+
+unit();
 
 //male_part();

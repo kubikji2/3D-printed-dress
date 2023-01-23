@@ -17,15 +17,27 @@ b_a = 50/5;
 
 // interface offset
 io = 0.3; // (height - 12/5)/2;
+// '-> interface offset, e.g. distance between cut na the piece
 i_D = height;
+// '-> bigger (base) conical interface diameter 
+//     '-> note that this is the cut hole diameter,
+//         the piece diameter is i_D-2*io, see bellow
 i_d = height/2;
+// '-> smaller (top) conical interface diameter
+//     '-> note that this is the cut hole diameter,
+//         the piece diameter is i_d-2*io, see bellow
 i_h = 1;
+// '-> conical interface heigh
+//     '-> no change in the size between the cut and the piece
 i_c = b_a/2;
+// '-> interface center, e.g. distance from the piece center
 i_w = 2;
+// '-> interface width, e.g. distance between the conical pegs
 i_g = 1;
+// '-> interface (cut) gauge, e.g. distance between the hulled conical peg
 
 // male part -> mp_
-mp_W = i_w - 2*io; //7.5/5; // -> this should be fc_w - 2* io? 
+mp_W = i_w - 2*io; //7.5/5;
 // '-> with of the piece
 mp_w = 3/5;
 // '-> width of not beveled part
@@ -33,7 +45,7 @@ mp_pd = i_d-2*io;//4.3/5;
 // '-> peg smaller diameter
 mp_pD = height-2*io;
 // '-> peg bigger diameter
-mp_h = 1; //(17.5/5 - mp_w)/2;
+mp_h = i_h; //(17.5/5 - mp_w)/2;
 // peg height
 mp_l = i_c + i_g + height/2; //37.5/5;
 // '-> total length
@@ -62,5 +74,5 @@ fc_off = (17.5/5)/2;
 // '-> cut offset from the center
 fc_w = i_w; //10/5;
 // '-> width
-fc_pg = i_g;//20/5-height;
+fc_pg = i_g; //20/5-height;
 // '-> peg gauge
